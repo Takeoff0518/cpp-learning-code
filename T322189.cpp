@@ -1,0 +1,24 @@
+#include<algorithm>
+#include<iostream>
+#include<cstring>
+#include<cstdio>
+#define N (1005)
+#define M (1005)
+#define ll long long
+#define INF (0x3f3f3f3f)
+#define mod (998244353)
+#define PII pair<int,int>
+#define ls(xxx) (xxx)<<1
+#define rs(xxx) (xxx)<<1|1
+using namespace std;
+char s[]="TFTTFTTFTTFTTFT";
+//        123456789012345
+int n,t;
+int main(){
+    cin>>t;
+    while(t--){
+        cin>>n;
+        cout<<s[n-1]<<endl;
+    }
+    return 0;
+}
