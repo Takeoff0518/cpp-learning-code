@@ -22,23 +22,23 @@ void add(int from,int to){
     edge[num_edge].to=to;
     head[from]=num_edge;
 }
-int dfn[N],low[N],timestamp,id[N],scc_cnt;
+int id[N],low[N],timestamp,id[N],scc_cnt;
 int n,m,w[N],v[N],d[N];
 bool in_stk[N];
 stack<int> st;
 void tarjan(int u){
-    low[u]=dfn[u]=++timestamp;
+    low[u]=id[u]=++timestamp;
     st.push(u); in_stk[u]=1;
     for(int i=head[u];i;i=edge[i].nxt){
         int j=edge[i].to;
-        if(!dfn[j]){
+        if(!id[j]){
             tarjan(j);
             low[u]=min(low[u],low[j]);
         }else if(in_stk[j]){
-            low[u]=min(low[u],dfn[j]);
+            low[u]=min(low[u],id[j]);
         }
     }
-    if(low[u]==dfn[u]){
+    if(low[u]==id[u]){
         int y;
         scc_cnt++;
         do{
@@ -62,7 +62,7 @@ int main(){
         if(d[i]) add(d[i],i);
     }
     for(int i=1;i<=n;i++){
-        if(!dfn[i]) tarjan(i);
+        if(!id[i]) tarjan(i);
     }
     memset(head,-1,sizeof(head)); num_edge=0;
     for(int i=1;i<=n;i++){
