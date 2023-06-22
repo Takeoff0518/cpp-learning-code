@@ -11,10 +11,9 @@
 #define ls(xxx) (xxx)<<1
 #define rs(xxx) (xxx)<<1|1
 using namespace std;
-bool isPrime(int x){
-    for(int i=2;i*i<=x;i++) if(x%i==0) return false;
-    return true;
-}
+int n;
 int main(){
+    cin>>n;
+    cout<<n-n/10<<endl;
     return 0;
 }

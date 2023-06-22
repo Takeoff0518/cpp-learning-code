@@ -11,10 +11,17 @@
 #define ls(xxx) (xxx)<<1
 #define rs(xxx) (xxx)<<1|1
 using namespace std;
-bool isPrime(int x){
-    for(int i=2;i*i<=x;i++) if(x%i==0) return false;
-    return true;
-}
+int n,m;
 int main(){
+    scanf("%d %d",&n,&m);
+    if(n<1000) n=1000;
+    for(int i=n;i<=m;i++){
+        int tmp=i,sum=0;
+        while(tmp){
+            sum+=(tmp%10)*(tmp%10)*(tmp%10)*(tmp%10);
+            tmp/=10;
+        }
+        if(sum==i) printf("%d\n",i);
+    }
     return 0;
 }
