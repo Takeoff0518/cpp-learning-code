@@ -11,10 +11,13 @@
 #define ls(xxx) (xxx)<<1
 #define rs(xxx) (xxx)<<1|1
 using namespace std;
-bool isPrime(int x){
-    for(int i=2;i*i<=x;i++) if(x%i==0) return false;
-    return true;
+void stringToChar(string &source, char &target[]){
+    for(auto i:source){
+        target[i]=source[i];
+    }
 }
+char a[100];
 int main(){
+    stringToChar("abc",a);
     return 0;
 }
