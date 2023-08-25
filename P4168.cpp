@@ -2,6 +2,7 @@
 #include<iostream>
 #include<cstring>
 #include<cstdio>
+#include<cmath>
 #define N (1005)
 #define M (1005)
 #define INF (0x3f3f3f3f)
@@ -14,7 +15,7 @@ using namespace std;
 int n,m,a[N],x;
 int ans[N][N],maxx[N][N];
 int cnt[N][N];
-int st[N],ed[N],bel[N],siz;
+int st[N],ed[N],bel[N],siz[N];
 void init(){
 	int sq=sqrt(n)+1;
 	for(int i=1;i<=sq;i++){
