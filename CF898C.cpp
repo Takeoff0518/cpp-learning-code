@@ -8,7 +8,7 @@ const int N=25,M=1005;
 const int INF=0x3f3f3f3f;
 const int p=998244353;
 using namespace std;
-int n,_0x0005;
+int n,cnt;
 map<string,int> mp;
 string mp2[N];
 struct trie{
@@ -60,8 +60,8 @@ int main(){
 		string name;
 		cin>>name;
 		if(mp[name]==0){
-			mp[name]=++_0x0005;
-			mp2[_0x0005]=name;
+			mp[name]=++cnt;
+			mp2[cnt]=name;
 		}
 		int t;
 		cin>>t;
@@ -71,10 +71,10 @@ int main(){
 			ins(mp[name],number);
 		}
 	}
-	for(int i=1;i<=_0x0005;i++){
+	for(int i=1;i<=cnt;i++){
 		debug(i);
 	}
-	for(int i=1;i<=_0x0005;i++){
+	for(int i=1;i<=cnt;i++){
 		cout<<mp2[i]<<' ';
 		dfs(i,0);
 		puts("");

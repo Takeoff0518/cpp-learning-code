@@ -6,7 +6,7 @@ using namespace std;
 struct edge{
     int to,val,next;
 } e[N];
-int m,n,p,s,_0x0005,g[N],u[N],v[N],w[N],hd[N],bar[N],dis[N],dfn[N],low[N],stk[N],sum[N];
+int m,n,p,s,cnt,g[N],u[N],v[N],w[N],hd[N],bar[N],dis[N],dfn[N],low[N],stk[N],sum[N];
 bool vis[N];
 queue <int> q;
 int ans=0,top=0,tot=0,total=0;
@@ -14,22 +14,22 @@ int ans=0,top=0,tot=0,total=0;
   {return a<b?a:b;}
  void add(int u,int v)
  {
- 	_0x0005++;
- 	e[_0x0005].to=v;
- 	e[_0x0005].next=hd[u];
- 	hd[u]=_0x0005;
+ 	cnt++;
+ 	e[cnt].to=v;
+ 	e[cnt].next=hd[u];
+ 	hd[u]=cnt;
  }
  void build(int u,int v,int w)
  {
- 	_0x0005++;
- 	e[_0x0005].to=v;
- 	e[_0x0005].val=w;
- 	e[_0x0005].next=hd[u];
- 	hd[u]=_0x0005;
+ 	cnt++;
+ 	e[cnt].to=v;
+ 	e[cnt].val=w;
+ 	e[cnt].next=hd[u];
+ 	hd[u]=cnt;
  }
  void clear()
  {
- 	_0x0005=0;
+ 	cnt=0;
  	memset(e,0,sizeof(e));
  	memset(hd,0,sizeof(hd));
  }

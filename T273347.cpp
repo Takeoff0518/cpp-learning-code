@@ -6,7 +6,7 @@ const int N=1e5,M=1e4;
 const int INF=0x3f3f3f3f;
 const int p=998244353;
 using namespace std;
-int n,q,_0x0005=1;
+int n,q,cnt=1;
 string s[2*N];
 bool caps[N];//capslock before i
 string fun(string str){
@@ -26,25 +26,25 @@ int main(){
         string tmp;
         cin>>tmp;
         if(tmp=="CapsLock"){
-            caps[_0x0005]^=1;
+            caps[cnt]^=1;
         }else{
-            s[_0x0005++]=tmp;
+            s[cnt++]=tmp;
         }
     }
-    _0x0005--;
-    for(int i=1;i<=_0x0005;i++){
+    cnt--;
+    for(int i=1;i<=cnt;i++){
         caps_cnt+=caps[i];
     }
 
     if(caps_cnt&1){
-        for(int i=1;i<=_0x0005;i++){
-            caps[i+_0x0005]=caps[i];
-            s[i+_0x0005]=s[i];
+        for(int i=1;i<=cnt;i++){
+            caps[i+cnt]=caps[i];
+            s[i+cnt]=s[i];
         }
-        _0x0005<<=1;
+        cnt<<=1;
     }
     bool mode=0;
-    for(int i=1;i<=_0x0005;i++){
+    for(int i=1;i<=cnt;i++){
         mode^=caps[i];
         if(mode){
             s[i]=fun(s[i]);
@@ -61,12 +61,12 @@ int main(){
     // }
     // cout<<endl<<caps_cnt<<' '<<cnt<<endl;
     scanf("%d",&q);
-    s[0]=s[_0x0005];
+    s[0]=s[cnt];
     while(q--){
         ll x;
         scanf("%lld",&x);
         //cout<<x%cnt<<' ';
-        cout<<s[x%_0x0005]<<endl;
+        cout<<s[x%cnt]<<endl;
     }
     return 0;
 }

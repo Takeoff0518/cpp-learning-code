@@ -7,7 +7,7 @@ const int N=1005,M=1005;
 const int INF=0x3f3f3f3f;
 const int p=998244353;
 using namespace std;
-int n,m,a[N],nxt[N],_0x0005,al,ar,ans=INF;
+int n,m,a[N],nxt[N],cnt,al,ar,ans=INF;
 bool flag=0,vis[N];
 void dfs(int len,int x,int last,int rest){
 //	if(x==cnt+1){
@@ -19,7 +19,7 @@ void dfs(int len,int x,int last,int rest){
 			flag=1;
 			return;
 		}
-		for(int i=1;i<=_0x0005;i++){
+		for(int i=1;i<=cnt;i++){
 			if(!vis[i]){
 				vis[i]=1;
 				dfs(len,x+1,i,len-a[i]);
@@ -29,7 +29,7 @@ void dfs(int len,int x,int last,int rest){
 			}
 		}
 	}
-	int l=last+1,r=_0x0005,mid;
+	int l=last+1,r=cnt,mid;
 	while(l<r){
 		mid=l+r>>1;
 		if(a[mid]<=rest){
@@ -38,7 +38,7 @@ void dfs(int len,int x,int last,int rest){
 			l=mid+1;
 		}
 	}
-	for(int i=l;i<=_0x0005;i++){
+	for(int i=l;i<=cnt;i++){
 		if(!vis[i]){
 			vis[i]=1;
 			dfs(len,x,i,rest-a[i]);
@@ -50,7 +50,7 @@ void dfs(int len,int x,int last,int rest){
 				return;
 			}
 			i=nxt[i];
-			if(i==_0x0005){
+			if(i==cnt){
 				return;
 			}
 		}
@@ -65,14 +65,14 @@ int main(){
     	int tmp;
     	scanf("%d",&tmp);
     	if(tmp<=50){
-    		a[++_0x0005]=tmp;
+    		a[++cnt]=tmp;
     		ar+=tmp;
 		}
 	}
-	sort(a+1,a+_0x0005+1,cmp);
+	sort(a+1,a+cnt+1,cmp);
 	al=a[1];
-	nxt[_0x0005]=_0x0005;
-	for(int i=_0x0005-1;i>=1;i--){
+	nxt[cnt]=cnt;
+	for(int i=cnt-1;i>=1;i--){
 		if(a[i]==a[i+1]){
 			nxt[i]=nxt[i+1];
 		}else{

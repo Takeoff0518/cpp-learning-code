@@ -28,12 +28,12 @@ void init(){
 			bel[j]=i;
 		}
 	}
+	
 	for(int i=1;i<=sq;i++){
 		siz[i]=ed[i]-st[i]+1;
 	}
 	for(int i=1;i<=n;i++){
 		cnt[bel[i]][a[i]]++;
-		
 	}
 }
 int main(){

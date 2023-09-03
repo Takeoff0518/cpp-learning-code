@@ -20,7 +20,7 @@ int timestamp;//时间戳
 int top[N];//重链顶部
 int id[N];//时间戳
 int w[N];//结点权值dfs序
-int v[N];
+int a[N];
 struct E{
     int nxt,to;
 }edge[M];
@@ -51,7 +51,7 @@ inline void spread(int p){
 void build(int p,int l,int r){
     t[p].l=l,t[p].r=r;
     if(l==r){
-        t[p].val=w[l];
+        t[p].val=a[l];
         return;
     }
     int mid=l+r>>1;
@@ -65,9 +65,9 @@ int query(int p,int l,int r){
     }
     spread(p);
     int mid=t[p].l+t[p].r>>1,ans=0;
-    if(l<=mid) ans+=query(ls(p),l,r);
-    if(r>mid) ans+=query(rs(p),l,r);
-    return ans;
+    if(l<=mid) ans=(ans+query(ls(p),l,r))%mod;
+    if(r>mid) ans+=(ans+query(rs(p),l,r))%mod;
+    return ans%mod;
 }
 void update(int p,int l,int r,int v){
     if(l<=t[p].l && r>=t[p].r){
@@ -106,7 +106,7 @@ void dfs2(int u,int t){
     timestamp++;
     id[u]=timestamp;
     top[u]=t;
-    w[timestamp]=v[u];
+    w[timestamp]=a[u];
     if(!son[u]) return;//没儿子
     dfs2(son[u],t);//先往重儿子走
     for(int i=head[u];i;i=edge[i].nxt){

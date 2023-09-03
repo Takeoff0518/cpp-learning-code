@@ -15,7 +15,7 @@ const int p=998244353;
 using namespace std;
 char t[N];
 int tree[N],n;
-int qpos[N],_0x0005; 
+int qpos[N],cnt; 
 ll ans;
 int a[N],b[N];
 ll check(){
@@ -38,7 +38,7 @@ ll check(){
 	return cnt; 
 }
 void dfs(int x){
-	if(x==_0x0005+1){
+	if(x==cnt+1){
 //		for(int i=1;i<=n;i++){
 //			cout<<t[i];
 //		}
@@ -58,7 +58,7 @@ int main(){
 	n=strlen(t+1);
 	for(int i=1;i<=n;i++){
 		if(t[i]=='*'){
-			qpos[++_0x0005]=i;
+			qpos[++cnt]=i;
 		}
 	}
 	dfs(1);

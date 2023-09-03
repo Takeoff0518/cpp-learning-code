@@ -25,7 +25,7 @@ void add(int from,int to,int dis){
 int son[N];//重儿子编号
 int id[N];//新编号
 int fa[N];//父亲节点
-int _0x0005;//dfs序
+int cnt;//dfs序
 int dep[N];//深度
 int size[N];//子树大小
 int top[N];//当前链顶端节点 

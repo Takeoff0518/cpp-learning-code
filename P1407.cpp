@@ -24,7 +24,7 @@ void add(int from,int to){
 	head[from]=num_edge;
 }
 map<string,int> mp;
-int q1[N],q2[N],_0x0005;
+int q1[N],q2[N],cnt;
 int n,m;
 int dfn[N],low[N],timestamp,scc_cnt,id[N];
 bool in_stk[N];
@@ -55,8 +55,8 @@ int main(){
 	for(int i=1;i<=n;i++){
 		string from,to;
 		cin>>from>>to;
-		if(!mp[from]) mp[from]=++_0x0005;
-		if(!mp[to])  mp[to]=++_0x0005;
+		if(!mp[from]) mp[from]=++cnt;
+		if(!mp[to])  mp[to]=++cnt;
 		q1[i]=mp[from],q2[i]=mp[to];
 		add(q1[i],q2[i]);
 	}
@@ -66,7 +66,7 @@ int main(){
 		cin>>to>>from;
 		add(mp[from],mp[to]);
 	}
-	for(int i=1;i<=_0x0005;i++){
+	for(int i=1;i<=cnt;i++){
 		if(!dfn[i]) tarjan(i); 
 	}
 //	for(int i=1;i<=cnt;i++) cout<<id[i]<<' ';

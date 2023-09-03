@@ -19,7 +19,7 @@ int f[N][M];// f[i][j]到(i,j)最小的点击次数
 //         return x.id<id;
 //     }
 // }tb[M];
-int ans,_0x0005;
+int ans,cnt;
 int main(){
     scanf("%d %d %d",&n,&m,&n);
     for(int i=0;i<n;i++){
@@ -64,7 +64,7 @@ int main(){
         }
     }
 
-    _0x0005=n,ans=INF;
+    cnt=n,ans=INF;
     for(int i=n;i>=1;i--){
         for(int j=down[i]+1;j<=up[i]-1;j++){
             ans=min(ans,f[i][j]);
@@ -73,13 +73,13 @@ int main(){
             break;
         }
         if(up[i]<=m){
-            _0x0005--;
+            cnt--;
         }
     }
-    if(_0x0005==n){
+    if(cnt==n){
         printf("1 \n%d\n",ans);
     }else{
-        printf("0 \n%d\n",_0x0005);
+        printf("0 \n%d\n",cnt);
     }
     return 0;
 }

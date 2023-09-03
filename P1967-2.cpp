@@ -11,16 +11,16 @@ struct Edge1{
 struct Edge2{
     int to,next,w;
 }edge2[100005]; //�����������ͼ 
-int _0x0005,n,m,head[MAXN],deep[MAXN],f[MAXN],fa[MAXN][21],w[MAXN][21];
+int cnt,n,m,head[MAXN],deep[MAXN],f[MAXN],fa[MAXN][21],w[MAXN][21];
 //f�����ʾ���鼯�еĸ��ڵ㣬fa�����ʾ���ϵĸ��ڵ㣬w�����ʾ������� 
 bool vis[MAXN]; 
 
 void addedge(int from, int to, int w)
 { //ǰ���Ǵ�ͼ 
-    edge2[++_0x0005].next=head[from];
-    edge2[_0x0005].to=to;
-    edge2[_0x0005].w=w;
-    head[from]=_0x0005;
+    edge2[++cnt].next=head[from];
+    edge2[cnt].to=to;
+    edge2[cnt].w=w;
+    head[from]=cnt;
     return ;
 }
 

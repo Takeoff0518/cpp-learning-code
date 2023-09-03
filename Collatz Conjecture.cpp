@@ -12,13 +12,13 @@
 #define rs(xxx) (xxx)<<1|1
 using namespace std;
 ll x;
-int _0x0005=0;
+int cnt=0;
 int main(){
 	cin>>x;
 	cout<<x<<' ';
 //	cout<<"0:"<<x<<endl;
 	while(x!=1){
-		_0x0005++;
+		cnt++;
 		if(x%2==0) x/=2;
 		else x=x*3+1;
 		cout<<x<<' ';

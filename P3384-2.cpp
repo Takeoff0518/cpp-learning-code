@@ -28,7 +28,7 @@ int e,beg[maxn],nex[maxn],to[maxn],w[maxn],wt[maxn];
 //链式前向星数组，w[]、wt[]初始点权数组 
 int a[maxn<<2],laz[maxn<<2];
 //线段树数组、lazy操作 
-int son[maxn],id[maxn],fa[maxn],_0x0005,dep[maxn],siz[maxn],top[maxn]; 
+int son[maxn],id[maxn],fa[maxn],cnt,dep[maxn],siz[maxn],top[maxn]; 
 //son[]重儿子编号,id[]新编号,fa[]父亲节点,cnt dfs_clock/dfs序,dep[]深度,siz[]子树大小,top[]当前链顶端节点 
 int res=0;
 //查询答案 
@@ -121,29 +121,29 @@ inline void updSon(int x,int k){//同上
 	update(1,1,k,id[x],id[x]+siz[x]-1,k);
 }
 
-inline void dfs1(int x,int f,int deep){//x当前节点，f父亲，deep深度 
-	dep[x]=deep;//标记每个点的深度 
-	fa[x]=f;//标记每个点的父亲 
-	siz[x]=1;//标记每个非叶子节点的子树大小 
+inline void dfs1(int u,int f,int deep){//x当前节点，f父亲，deep深度 
+	dep[u]=deep;//标记每个点的深度 
+	fa[u]=f;//标记每个点的父亲 
+	siz[u]=1;//标记每个非叶子节点的子树大小 
 	int maxson=-1;//记录重儿子的儿子数 
-	for(Rint i=beg[x];i;i=nex[i]){
+	for(Rint i=beg[u];i;i=nex[i]){
 		int y=to[i];
 		if(y==f)continue;//若为父亲则continue 
-		dfs1(y,x,deep+1);//dfs其儿子 
-		siz[x]+=siz[y];//把它的儿子数加到它身上 
-		if(siz[y]>maxson)son[x]=y,maxson=siz[y];//标记每个非叶子节点的重儿子编号 
+		dfs1(y,u,deep+1);//dfs其儿子 
+		siz[u]+=siz[y];//把它的儿子数加到它身上 
+		if(siz[y]>maxson)son[u]=y,maxson=siz[y];//标记每个非叶子节点的重儿子编号 
 	}
 }
 
-inline void dfs2(int x,int topf){//x当前节点，topf当前链的最顶端的节点 
-	id[x]=++_0x0005;//标记每个点的新编号 
-	wt[_0x0005]=w[x];//把每个点的初始值赋到新编号上来 
-	top[x]=topf;//这个点所在链的顶端 
-	if(!son[x])return;//如果没有儿子则返回 
-	dfs2(son[x],topf);//按先处理重儿子，再处理轻儿子的顺序递归处理 
-	for(Rint i=beg[x];i;i=nex[i]){
+inline void dfs2(int u,int t){//x当前节点，topf当前链的最顶端的节点 
+	id[u]=++cnt;//标记每个点的新编号 
+	wt[cnt]=w[u];//把每个点的初始值赋到新编号上来 
+	top[u]=t;//这个点所在链的顶端 
+	if(!son[u])return;//如果没有儿子则返回 
+	dfs2(son[u],t);//按先处理重儿子，再处理轻儿子的顺序递归处理 
+	for(Rint i=beg[u];i;i=nex[i]){
 		int y=to[i];
-		if(y==fa[x]||y==son[x])continue;
+		if(y==fa[u]||y==son[u])continue;
 		dfs2(y,y);//对于每一个轻儿子都有一条从它自己开始的链 
 	}
 }

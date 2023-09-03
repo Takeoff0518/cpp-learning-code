@@ -6,7 +6,7 @@ const int N=1e6+5,M=1e6+5;
 const int INF=0x3f3f3f3f;
 const int p=998244353;
 using namespace std;
-int n,m,c,k,_0x0005;
+int n,m,c,k,cnt;
 int vis[N],d[N];
 inline bool check(int x,int k){
     return (x>>k)&1;
@@ -28,17 +28,17 @@ int main(){
     }
     for(int i=0;i<k;i++){
     	if(d[i]){
-    		_0x0005++;
+    		cnt++;
 		}
 	}
-	if(k-_0x0005==64){
+	if(k-cnt==64){
 		if(n){
 			cout<<(unsigned ll)(-n)<<endl;
 		}else{
 			cout<<"18446744073709551616"<<endl;
 		}
 	}else{
-		cout<<(1ull<<(k-_0x0005))-n<<endl;
+		cout<<(1ull<<(k-cnt))-n<<endl;
 	}
     
     return 0;
