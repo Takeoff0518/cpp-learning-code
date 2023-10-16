@@ -24,7 +24,7 @@ int main(){
     for(int i=1,u,v;i<=m;i++){
         scanf("%d %d",&u,&v);
         to[v]+=a[u],
-        sum[v]=to[u],
+        sum[v]=to[v],
         tot+=a[u];
     }
     scanf("%d",&q);

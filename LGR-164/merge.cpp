@@ -1,9 +1,7 @@
-#include<boost/date_time/gregorian/gregorian.hpp>
 #include<algorithm>
 #include<iostream>
 #include<cstring>
 #include<cstdio>
-#include<ctime>
 #define N (1005)
 #define M (1005)
 #define ll long long
@@ -13,7 +11,15 @@
 #define ls(xxx) (xxx)<<1
 #define rs(xxx) (xxx)<<1|1
 using namespace std;
-
+int n,t;
+int a[N];
 int main(){
+	scanf("%d",&t);
+	while(t--){
+		scanf("%d\n",&n);
+		for(int i=1;i<=n;i++) scanf("%d\n",&a[i]);
+		puts("Huoyu");
+	}
     return 0;
 }
+

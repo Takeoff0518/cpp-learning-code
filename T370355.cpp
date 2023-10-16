@@ -14,7 +14,20 @@ using namespace std;
 int n;
 char g[N][7];
 int check(int x){
-
+    char t[5][7];
+    int loc=(x-1)*4+1;
+    for(int i=1;i<=3;i++){
+        for(int j=1;j<=5;j++){
+            t[i][j]=g[loc+i-1][j];
+        }
+    }
+    int cnt=0;
+    for(int i=1;i<=3;i++){
+        for(int j=1;j<=5;j++){
+            cnt+= t[i][j]=='.' ? 1 : 0;
+        }
+    }
+    
 }
 int main(){
     cin>>n;
