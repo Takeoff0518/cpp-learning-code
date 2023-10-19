@@ -3,3 +3,6 @@ tempCodeRunnerFile.*
 /.vscode
 /.cph
 Untitled-1.cpp
+*.in
+*.out
+*.ans

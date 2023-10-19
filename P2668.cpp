@@ -11,11 +11,13 @@
 #define ls(xxx) (xxx)<<1
 #define rs(xxx) (xxx)<<1|1
 using namespace std;
-int n,a[N],b[N]; 
+int t,n;
+int a[N],b[N]; 
 int main(){
-	scanf("%d",&n);
-	for(int i=1;i<=n;i++) scanf("%d %d",&a[i],&b[i]);
-	
+	scanf("%d %d",&t,&n);
+	while(t--){
+		scanf("%d %d",&a[i],&b[i]);
+	}
     return 0;
 }
 

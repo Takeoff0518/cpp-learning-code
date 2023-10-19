@@ -2,6 +2,7 @@
 #include<iostream>
 #include<cstring>
 #include<cstdio>
+#include<queue> 
 #define N (1005)
 #define M (1005)
 #define ll long long
@@ -11,11 +12,20 @@
 #define ls(xxx) (xxx)<<1
 #define rs(xxx) (xxx)<<1|1
 using namespace std;
-int n,a[N],b[N]; 
+int n,m,s;
+struct E{
+	int nxt,to,dis;
+}e[M];
+int h[N],idx;
+void add(int from,int to,int dis){
+	e[++idx].nxt=h[from];
+	e[idx].to=to;
+	e[idx].dis;
+	h[from]=idx;
+}
+
 int main(){
-	scanf("%d",&n);
-	for(int i=1;i<=n;i++) scanf("%d %d",&a[i],&b[i]);
-	
+
     return 0;
 }
 
