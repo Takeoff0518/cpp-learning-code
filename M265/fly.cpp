@@ -21,6 +21,8 @@ struct node{
 	}
 }s[N];
 int main(){
+	freopen("fly.in","r",stdin);
+	freopen("fly.out","w",stdout);
 	scanf("%d %d",&n,&m);
 	for(int i=1;i<=n;i++) scanf("%d",&p[i]);
 	for(int i=1;i<=m;i++) scanf("%d %d",&s[i].s,&s[i].t);

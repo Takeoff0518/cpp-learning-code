@@ -14,10 +14,10 @@
 #define ls(xxx) (xxx)<<1
 #define rs(xxx) (xxx)<<1|1
 using namespace std;
-int main(){
-	srand(time(0));
-	int maxx=1000000000;
-	int n=20000,m=20000;
+void make(){
+	srand(time(0)+rand());
+	int maxx=1000;
+	int n=100,m=100;
 	printf("%d %d\n",n,m);
 	for(int i=1;i<=n;i++)
 		printf("%d\n",rand()%maxx);
@@ -25,6 +25,13 @@ int main(){
 		int s=rand()%maxx,t=rand()%maxx;
 		if(s>t) swap(s,t);
 		printf("%d %d\n",s,t);
+	}
+}
+int main(){
+//	freopen("fly2.in","w",stdout);
+	while(1){
+		make();
+		system("pause");
 	}
     return 0;
 }
