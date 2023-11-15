@@ -1,45 +1,40 @@
+#include<algorithm>
 #include<iostream>
 #include<cstring>
 #include<cstdio>
+#define N (1005)
+#define M (1005)
 #define ll long long
-const int N=1e6+5,M=1e6+5;
-const int INF=0x3f3f3f3f;
-const int p=998244353;
+#define ull unsigned ll
+#define INF (0x3f3f3f3f)
+#define mod (998244353)
+#define PII pair<int,int>
+#define ls(xxx) (xxx)<<1
+#define rs(xxx) (xxx)<<1|1
 using namespace std;
-int n,m,c,k,cnt;
-int vis[N],d[N];
-inline bool check(int x,int k){
-    return (x>>k)&1;
-}
+int n,m,c; ull k;
+ull need,lim;
 int main(){
-    scanf("%d %d %d %d",&n,&m,&c,&k);
-    for(int i=1;i<=n;i++){
-    	unsigned ll a;
-        cin>>a;
-        for(int j=k-1;j>=0;j--){
-        	vis[j]|=(a<<j)&1;
-		}
-    }
-    for(int i=1,p,q;i<=m;i++){
-        scanf("%d %d",&p,&q);
-        if(!vis[p]){
-        	d[p]=1;
-		}
-    }
-    for(int i=0;i<k;i++){
-    	if(d[i]){
-    		cnt++;
-		}
+	scanf("%d %d %d %llu",&n,&m,&c,&k);
+	for(int i=1;i<=n;i++){
+		ull a; scanf("%llu",&a);
+		need|=a;
 	}
-	if(k-cnt==64){
-		if(n){
-			cout<<(unsigned ll)(-n)<<endl;
-		}else{
-			cout<<"18446744073709551616"<<endl;
-		}
-	}else{
-		cout<<(1ull<<(k-cnt))-n<<endl;
+	for(int i=1;i<=m;i++){
+		int p; scanf("%d",&p);
+		lim|=1ull<<p;
+		scanf("%llu");
 	}
-    
+	int ans=0;
+	for(int i=0;i<k;i++){
+		ans+=!((lim>>i)&1)||((need)>>i)&1;
+	}
+	if(ans==64&&!n) printf("18446744073709551616");
+	else printf("%llu",ans==64 ? -n : ((1ull<<ans)-n));
     return 0;
 }
+/*
+	zyb txdy!
+	Author: takeoff37808
+*/
+

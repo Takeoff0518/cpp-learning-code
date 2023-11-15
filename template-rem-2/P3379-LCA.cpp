@@ -22,7 +22,7 @@ void add(int from,int to){
 	e[idx].to=to;
 	h[from]=idx;
 }
-int fa[N][31],dep[N];
+int f[N][31],dep[N];
 queue<int> q;
 void bfs(int root){
 	memset(dep,0x3f,sizeof(dep));
@@ -35,24 +35,21 @@ void bfs(int root){
 			if(dep[j]>dep[t]+1){
 				dep[j]=dep[t]+1;
 				q.push(j);
-				fa[j][0]=t;
-				for(int k=1;k<=30;k++){
-					fa[j][k]=fa[fa[j][k-1]][k-1];
-				}
+				f[j][0]=t;
+				for(int k=1;k<=30;k++)
+					f[j][k]=f[f[j][k-1]][k-1];
 			}
 		}
-	}
+	} 
 }
 int lca(int a,int b){
 	if(dep[a]<dep[b]) swap(a,b);
-	for(int k=30;k>=0;k--){
-		if(dep[fa[a][k]]>=dep[b]) a=fa[a][k];
-	}
+	for(int k=30;k>=0;k--) 
+		if(dep[f[a][k]]>=dep[b]) a=f[a][k];
 	if(a==b) return a;
-	for(int k=30;k>=0;k--){
-		if(fa[a][k]!=fa[b][k]) a=fa[a][k],b=fa[b][k];
-	}
-	return fa[a][0];
+	for(int k=30;k>=0;k--)
+		if(f[a][k]!=f[b][k]) a=f[a][k],b=f[b][k];
+	return f[a][0];
 }
 int main(){
 	scanf("%d %d %d",&n,&m,&s);
@@ -68,4 +65,8 @@ int main(){
 	}
     return 0;
 }
+/*
+	zyb txdy!
+	Author: takeoff37808
+*/
 
