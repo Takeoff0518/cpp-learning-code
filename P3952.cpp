@@ -22,6 +22,7 @@ struct T{
 	char var;//名称 
 	int dep;//层数
 	int val;//复杂度
+	int calc,fa;
 	/*
 	 1-O(n) o_n
 	 0-O(1) o_1
@@ -49,77 +50,42 @@ int calc_num(string x){
 int flex_rec[N],max_dep=0;
 bool process(int &tg_flex,vector<T> &rec){
 	int calc_flex=0;
-	stack<T> st;
-	
-	rec.push_back({'z',0,o_1});
-	//第一个进栈 
-	st.push(rec.front());
-	bool is_o_0=0;
-	for(auto it=rec.begin()+1;it!=rec.end();it++){
-		
-		/*
-			debug
-		*/
-//		printf("get %c: val=%d, dep=%d\n",(*it).var,(*it).val,(*it).dep);
-		
-		//不是上一层，进栈 
-		if((*it).dep>=st.top().dep){
-			
-			/*debug*/
-//			printf("goto fork 1\n");
-			
-			st.push(*it);
-			//如果O(0)，没法计算下一步循环 
-			//就算下面仍然存在O(0)也没有影响
-			if((*it).val==o_0){
-				is_o_0=1;
-			}
+	stack<int> st;//直接记录编号
+	//先记录一下父节点 
+	st.push(0);
+	for(int i=0+1;i<(int)rec.size();i++){
+//		if(rec[st.top()].dep<=rec[i].dep){
+//			st.push(i);
+//		}else{
+//			while(rec[st.top()].dep>rec[i].dep){
+//				int t=st.top(); st.pop();
+//				rec[t].fa=i;
+//			}
+//			st.push(i);
+//		}
+		while(rec[st.top()].dep>rec[i].dep){
+			int t=st.top(); st.pop();
+			rec[t].fa=i;
 		}
-		//是上一层，退栈到与这一层齐平
-		//同时记录
-		else{
-			
-			/*debug*/
-//			printf("goto fork 2\n");
-			
-			int max_flex=flex_rec[(*it).dep];
-			while((int)st.size()>(*it).dep){
-				T ttop=st.top(); st.pop();
-				
-				/*debug*/
-//				printf("pop: %c\n",ttop.var);
-				
-				//不存在O(0)时才能记录 
-				if(!is_o_0){
-					if(ttop.val==o_1){
-						//保持原样 
-					}else if(ttop.val==o_n){
-						max_flex++;
-						
-						/*debug*/
-//						printf("max_flex++,=%d\n",max_flex);
-					}
-				}
-				flex_rec[ttop.dep]=max(flex_rec[ttop.dep],max_flex);
-			}
-			st.push(*it);
-			if((*it).val==o_0) is_o_0=1;
-			else is_o_0=0; 
-		}
+		st.push(i);
 	}
+	while(!st.empty()){
+		rec[st.top()].fa=0;
+		st.pop();
+	} 
+//	st.clear();
 	
-	
-	
-	/*
-		debug
-	*/
-//	printf("flex_rec: ");
-//	for(int i=0;i<=max_dep;i++){
-//		printf("%d ",flex_rec[i]);
-//	}puts("");
-	
-//	if(!flex_rec[1]) flex_rec[1]=1;
-	calc_flex=flex_rec[1]; 
+	st.push(0);
+	for(int i=0+1;i<(int)rec.size();i++){
+		while(rec[st.top()].dep>rec[i].dep){
+			int t=st.top(); st.pop();
+			if(rec[t].val==o_0) rec[t].calc=0;
+		}
+		st.push(i);
+	}
+	for(T i:rec){
+		
+	}
 	return (tg_flex==calc_flex);
 }
 void solve(){
@@ -145,7 +111,7 @@ void solve(){
 		处理for数据 
 	*/
 	vector<T> rec;//记录所有循环 
-	stack<T> st;//同上，与used配合 
+	stack<char> st;//同上，与used配合 
 	bool used[30]={false};//记录使用过的字符 
 	int top=0;//统计深度
 	max_dep=0;
@@ -195,11 +161,11 @@ void solve(){
 				int dep;//层数
 				int val;//复杂度
 			*/
-			st.push({cha,top,rec_flex});//记录 
-			rec.push_back({cha,top,rec_flex});
+			st.push(cha);//记录 
+			rec.push_back({cha,top,rec_flex,0,0});
 		}else{//碰到E 
-			T ttop=st.top(); st.pop(); top--;
-			used[ttop.var-'a']=0;//反标记一下 
+			char ttop=st.top(); st.pop(); top--;
+			used[ttop-'a']=0;//反标记一下 
 		}
 	}
 	
